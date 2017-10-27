@@ -1,5 +1,5 @@
 {
-  "name": "Websockets Chat",
+  "name": "websockets-chat",
   "version": "1.0.0",
   "description": "Concept chat app using websockets",
   "main": "app.js",
@@ -17,7 +17,5 @@
     "express": "^4.16.2",
     "socket.io": "^2.0.4"
   },
-  "devDependencies": {
-    "nodemon": "^1.12.1"
-  }
+  "devDependencies": {}
 }
