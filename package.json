@@ -6,8 +6,13 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://peter_rozac@bitbucket.org/peter_rozac/websockets-chat.git"
+  },
   "author": "Peter Rozac",
   "license": "ISC",
+  "homepage": "https://bitbucket.org/peter_rozac/websockets-chat#readme",
   "dependencies": {
     "express": "^4.16.2",
     "socket.io": "^2.0.4"
