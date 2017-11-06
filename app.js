@@ -1,13 +1,13 @@
-var express = require('express');
-var server = express();
+const express = require('express');
+const server = express();
 
 // server
-var port = 9000;
+const port = 9000;
 server.use(express.static('public'));
-var io = require('socket.io')(server.listen(port));
+const io = require('socket.io')(server.listen(port));
 
 // socket
-io.on('connection', function(socket) {
+io.on('connection', (socket) => {
 
     socket.emit( 'chat', {
         handle: 'Chatbot',
@@ -16,21 +16,21 @@ io.on('connection', function(socket) {
 
     console.log('Connect:', socket.id);
 
-    socket.on('disconnect', function() {
+    socket.on('disconnect', () => {
         console.log('Disconnect:', socket.id);
     });
 
-    socket.on('chat', function(data) {
+    socket.on('chat', (data) => {
 
         io.emit('chat', data);
         console.log(socket.id, ': ' ,data);
     });
 
-    socket.on('typing', function(data) {
+    socket.on('typing', (data) => {
         socket.broadcast.emit('typing', data);
     });
 
-    // var user = Object.keys(io.engine.clients)[0];
+    // const user = Object.keys(io.engine.clients)[0];
     // socket.to(user).emit('chat', {handle: 'Sekret Agent', message: 'Super sekret msg'});
 });
 

@@ -8,10 +8,10 @@ const message = document.querySelector('#message');
 const send = document.querySelector('#send');
 
 // Emitter
-send.addEventListener('click', function() {
-    
+send.addEventListener('click', () => {
+
     if (handle.value && message.value) {
-    
+
         socket.emit('chat', {
             handle: handle.value,
             message: message.value
@@ -21,7 +21,7 @@ send.addEventListener('click', function() {
     }
 });
 
-message.addEventListener('keypress', function() {
+message.addEventListener('keypress', () => {
 
     if (handle.value) {
         socket.emit('typing', handle.value);
@@ -29,13 +29,13 @@ message.addEventListener('keypress', function() {
 });
 
 // Listener
-socket.on('chat', function(data) {
+socket.on('chat', (data) => {
 
     feedback.innerHTML = '';
     output.innerHTML += '<p><strong>' + data.handle + ':</strong> ' + data.message + '</p>';
 });
 
-socket.on('typing', function(data) {
+socket.on('typing', (data) => {
 
     feedback.innerHTML = '<p><em>' + data + ': is typing...</em></p>';
 });
