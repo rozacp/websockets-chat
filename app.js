@@ -9,21 +9,19 @@ const io = require('socket.io')(server.listen(port, () => console.log(`Server up
 // socket
 io.on('connection', (socket) => {
 
-    socket.emit( 'chat', {
+    console.log(`Connect: ${socket.id}`);
+    
+    socket.on('disconnect', () => console.log(`Disconnect: ${socket.id}`));
+
+    socket.emit('chat', {
         handle: 'Chatbot',
         message: 'Welcome to websockets chat. Beep Bop!'
-    });
-
-    console.log('Connect:', socket.id);
-
-    socket.on('disconnect', () => {
-        console.log('Disconnect:', socket.id);
     });
 
     socket.on('chat', (data) => {
 
         io.emit('chat', data);
-        console.log(socket.id, ': ' ,data);
+        console.log(`${socket.id} [ ${data.handle} ]: ${data.message}`);
     });
 
     socket.on('typing', (data) => {
