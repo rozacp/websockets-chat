@@ -4,7 +4,7 @@ const server = express();
 // server
 const port = 9000;
 server.use(express.static('public'));
-const io = require('socket.io')(server.listen(port));
+const io = require('socket.io')(server.listen(port, () => console.log(`Server up on port ${port}`)));
 
 // socket
 io.on('connection', (socket) => {
@@ -34,4 +34,3 @@ io.on('connection', (socket) => {
     // socket.to(user).emit('chat', {handle: 'Sekret Agent', message: 'Super sekret msg'});
 });
 
-console.log('\nServer up on port ' + port +'\n');
