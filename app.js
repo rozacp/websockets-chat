@@ -7,7 +7,7 @@ server.use(express.static('public'));
 const io = require('socket.io')(server.listen(port, () => console.log(`Server up on port ${port}`)));
 
 // socket
-io.on('connection', (socket) => {
+io.on('connection', socket => {
 
     console.log(`Connect: ${socket.id}`);
     
@@ -18,17 +18,14 @@ io.on('connection', (socket) => {
         message: 'Welcome to websockets chat. Beep Bop!'
     });
 
-    socket.on('chat', (data) => {
+    socket.on('chat', data => {
 
         io.emit('chat', data);
         console.log(`${socket.id} [ ${data.handle} ]: ${data.message}`);
     });
 
-    socket.on('typing', (data) => {
-        socket.broadcast.emit('typing', data);
-    });
+    socket.on('typing', data => socket.broadcast.emit('typing', data));
 
     // const user = Object.keys(io.engine.clients)[0];
     // socket.to(user).emit('chat', {handle: 'Sekret Agent', message: 'Super sekret msg'});
 });
-
